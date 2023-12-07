@@ -1,4 +1,13 @@
-<?php include("connection.php"); ?>
+<?php include("connection.php");
+
+$id = $_GET['id'];
+
+$query = "select * from form_table where id = '$id'";
+$data = mysqli_query($conn,$query);
+
+$result = mysqli_fetch_assoc($data)
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -13,29 +22,29 @@
     <div class="container">
         <form action="#" method="POST">
             <div class="title">
-                Registration Form
+                Update Student Details
             </div>
             <div class="form">
                 <div class="input_field">
                     <label for="name">First Name</label>
-                    <input type="text" name="fname" class="input" id="name" required>
+                    <input type="text" value="<?php echo $result['fname']; ?>" name="fname" class="input" id="name" required>
                 </div>
                 <div class="input_field">
                     <label for="name">Last Name</label>
-                    <input type="text" name="lname" class="input" id="lname" required>
+                    <input type="text" name="lname" class="input" id="lname" required value="<?php echo $result['lname']; ?>">
                 </div>
                 <div class="input_field">
                     <label for="pass">Password</label>
-                    <input type="password" name="password" class="input" id="pass" required>
+                    <input type="password" name="password" class="input" id="pass" value="<?php echo $result['password']; ?>" required>
                 </div>
                 <div class="input_field">
                     <label for="cpass">Confirm Password</label>
-                    <input type="password" class="input" name="cpassword" id="cpass" required>
+                    <input type="password" class="input" name="cpassword" value="<?php echo $result['cpassword']; ?>" id="cpass" required>
                 </div>
                 <div class="input_field">
                     <label for="gender">Gender</label>
                     <div class="custom_select">
-                        <select name="gender" required>
+                        <select name="gender" required >
                             <option value="">SELECT</option>
                             <option value="male">MALE</option>
                             <option value="female">FEMALE</option>
@@ -45,15 +54,15 @@
                 </div>
                 <div class="input_field">
                     <label for="email">Email</label>
-                    <input type="email" name="email" class="input" id="email" required>
+                    <input type="email" name="email" class="input" value="<?php echo $result['email']; ?>" id="email" required>
                 </div>
                 <div class="input_field">
                     <label for="phonenumber">Mobile Number</label>
-                    <input type="text" name="phone" class="input" id="phonenumber" required>
+                    <input type="text" name="phone" class="input" value="<?php echo $result['phone']; ?>" id="phonenumber" required>
                 </div>
                 <div class="input_field">
                     <label for="ad">Address</label>
-                    <textarea id="ad" name="address" class="textarea" required></textarea>
+                    <textarea id="ad" name="address" class="textarea" required><?php echo $result['address']; ?></textarea>
                 </div>
                 <div class="input_field terms">
                     <label class="check">
